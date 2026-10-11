@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#101211" />
+  <title>Trait Farm Config</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="shell">
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="Trait Farm Config home"><span class="brand-mark">✳</span> etler <span class="brand-divider">/</span> config maker</a>
+      <span class="live"><i></i> <span id="save-status">Auto-save on</span></span>
+    </header>
+
+    <section class="intro">
+      <div class="eyebrow">BOUNDLESS TOWER · AUTO FARM</div>
+      <h1>Build your farm config<span>.</span></h1>
+      <p>Choose what to farm for. Your config updates as you go.</p>
+    </section>
+
+    <section class="layout">
+      <div class="form-column">
+        <section class="card priorities-card">
+          <div class="section-heading">
+            <div><span class="step">01</span><h2>Stand priorities</h2></div>
+            <span class="hint">Farm groups from top to bottom</span>
+          </div>
+          <div id="groups" class="groups"></div>
+          <button class="add-button" id="add-group" type="button"><span>＋</span> Add a stand group</button>
+          <div class="trait-note"><span class="note-icon">i</span><span><b>Trait names</b> Exact: <code>Godly</code> · any hexed: <code>Any Hexed</code> · tier: <code>All Mythic</code> · hexed tier: <code>All Mythic Hexed</code>. Plain and hexed tiers are separate. Separate multiple traits with commas.</span></div>
+        </section>
+
+        <details class="card settings-card" open>
+          <summary><span class="step">02</span><span class="summary-title">Farm settings</span><span class="summary-hint">Defaults are ready to use</span><span class="chevron">⌄</span></summary>
+          <div class="settings-content">
+            <div class="field-grid">
+              <label class="field"><span>Floor cap <small>0 = climb forever</small></span><input id="floor-cap" type="number" min="0" value="15"></label>
+              <label class="field"><span>UCoins cap <small>0 = no cap</small></span><input id="ucoins-cap" type="number" min="0" value="0"></label>
+              <label class="field"><span>Ascension cap <small>0 = no cap</small></span><input id="ascension-cap" type="number" min="0" value="0"></label>
+              <label class="field"><span>Ascend cooldown <small>Seconds · 0 = off</small></span><input id="ascend-cooldown" type="number" min="0" value="0"></label>
+              <label class="field"><span>FPS cap</span><input id="fps-cap" type="number" min="1" value="15"></label>
+            </div>
+            <div class="toggle-grid">
+              <label class="check"><input id="eco-mode" type="checkbox" checked><span>Eco mode</span></label>
+              <label class="check"><input id="stop-rendering" type="checkbox"><span>Stop rendering</span></label>
+              <label class="check"><input id="debug-mode" type="checkbox"><span>Debug mode</span></label>
+              <label class="check"><input id="auto-chest" type="checkbox" checked><span>Auto chest</span></label>
+              <label class="check"><input id="auto-ascend" type="checkbox" checked><span>Auto ascend</span></label>
+              <label class="check"><input id="auto-summon" type="checkbox" checked><span>Auto summon stand</span></label>
+              <label class="check"><input id="auto-buso" type="checkbox" checked><span>Auto Buso Haki</span></label>
+              <label class="check"><input id="auto-skills" type="checkbox"><span>Auto skills</span></label>
+            </div>
+            <div class="field-grid lower-fields">
+              <label class="field"><span>Keep items <small>Comma separated</small></span><input id="items" type="text" placeholder="e.g. Ancient Scroll, Lucky Arrow"></label>
+              <label class="field"><span>Skill keys <small>Use R+ for charged</small></span><input id="skill-keys" type="text" placeholder="e.g. R, T, R+"></label>
+              <label class="field"><span>Trait webhook <small>Optional Discord URL</small></span><input id="webhook" type="url" placeholder="https://discord.com/api/webhooks/..."></label>
+            </div>
+          </div>
+        </details>
+
+        <details class="card settings-card skins-card" open>
+          <summary><span class="step">03</span><span class="summary-title">Skin settings</span><span class="summary-hint">Recycling, rarity protection and crates</span><span class="chevron">⌄</span></summary>
+          <div class="settings-content">
+            <div class="toggle-grid skin-toggles">
+              <label class="check"><input id="skin-recycle" type="checkbox" checked><span>Recycle skins</span></label>
+              <label class="check"><input id="keep-premium" type="checkbox" checked><span>Keep premium</span></label>
+              <label class="check"><input id="keep-unusuals" type="checkbox" checked><span>Keep unusuals</span></label>
+              <label class="check"><input id="forge-unusuals" type="checkbox" checked><span>Forge unusuals</span></label>
+              <label class="check"><input id="buy-crates" type="checkbox" checked><span>Buy crates</span></label>
+            </div>
+            <label class="field rarity-field"><span>Keep rarities <small>Comma separated</small></span><input id="rarities" type="text" value="Event"></label>
+            <label class="field rarity-field"><span>Skin webhook <small>Optional Discord URL</small></span><input id="skin-webhook" type="url" placeholder="https://discord.com/api/webhooks/..."></label>
+          </div>
+        </details>
+      </div>
+
+      <aside class="output-card">
+        <div class="output-head"><div><span class="step">04</span><h2>Your config</h2></div><button class="copy-button" id="copy" type="button"><span class="copy-icon">▢</span> Copy</button></div>
+        <div class="output-sub">Paste this above your loader line.</div>
+        <pre class="code-wrap"><code id="output"></code></pre>
+        <div class="copied" id="copied" aria-live="polite"></div>
+        <div class="output-foot"><span class="output-dot"></span> Config only <span class="foot-divider">·</span> no key or loader</div>
+      </aside>
+    </section>
+    <footer><span>Use your executor’s auto-execute folder so the script runs again after teleports.</span><span>Etler Hub</span></footer>
+  </main>
+  <script type="module" src="app.js"></script>
+</body>
+</html>
